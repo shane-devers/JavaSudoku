@@ -13,9 +13,11 @@ import java.util.Arrays;
 public class Grid {
     
     private int[][] contents;
+    private int size;
     
     public Grid() {
         contents = new int[9][9];
+        size = contents.length;
         Random rand = new Random();
         for (int i = 0; i < contents.length; i++) {
             for (int j = 0; j < contents[i].length; j++) {
@@ -27,8 +29,10 @@ public class Grid {
     }
     
     public boolean checkCollision(int i, int j) {
-        if (Arrays.binarySearch(contents[i], contents[i][j]) > -1) {
-            return true;
+        for (int k = 0; k < contents.length; k++) {
+            if (contents[i][j] == contents[i][k] && j != k) {
+                return true;
+            }
         }
         for (int k = 0; k < contents.length; k++) {
             if (contents[i][j] == contents[k][j] && i != k) {
@@ -39,7 +43,7 @@ public class Grid {
         int lLow = (j / 3) * 3;
         for (int k = kLow; k < kLow + 3; k++) {
             for (int l = lLow; l < lLow + 3; l++) {
-                if (contents[i][j] == contents[k][l] && i != k && j != l) {
+                if (contents[i][j] == contents[k][l] && (i != k || j != l)) {
                     return true;
                 }
             }
@@ -49,6 +53,10 @@ public class Grid {
     
     public int getContents(int i, int j) {
         return contents[i][j];
+    }
+    
+    public int getSize() {
+        return size;
     }
     
 }
