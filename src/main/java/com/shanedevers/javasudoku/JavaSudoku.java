@@ -10,6 +10,7 @@ package com.shanedevers.javasudoku;
  */
 public class JavaSudoku extends javax.swing.JFrame {
 
+    private int difficulty;
     /**
      * Creates new form JavaSudokuUI
      */
@@ -26,14 +27,19 @@ public class JavaSudoku extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnGrpDiff = new javax.swing.ButtonGroup();
+        lblTitle = new javax.swing.JLabel();
         btnNewGame = new javax.swing.JButton();
+        lblDifficulty = new javax.swing.JLabel();
+        btnEasy = new javax.swing.JRadioButton();
+        btnMedium = new javax.swing.JRadioButton();
+        btnHard = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome to Java Sudoku!");
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Welcome to Java Sudoku!");
 
         btnNewGame.setText("New Game");
         btnNewGame.addActionListener(new java.awt.event.ActionListener() {
@@ -42,38 +48,93 @@ public class JavaSudoku extends javax.swing.JFrame {
             }
         });
 
+        lblDifficulty.setText("Difficulty:");
+
+        btnGrpDiff.add(btnEasy);
+        btnEasy.setLabel("Easy");
+        btnEasy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEasyActionPerformed(evt);
+            }
+        });
+
+        btnGrpDiff.add(btnMedium);
+        btnMedium.setText("Medium");
+        btnMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMediumActionPerformed(evt);
+            }
+        });
+
+        btnGrpDiff.add(btnHard);
+        btnHard.setText("Hard");
+        btnHard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHardActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnNewGame)
-                        .addGap(154, 154, 154))))
+                        .addGap(153, 153, 153))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(lblDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHard, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEasy, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addComponent(lblTitle)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDifficulty)
+                    .addComponent(btnEasy))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMedium)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnHard)
+                .addGap(21, 21, 21)
                 .addComponent(btnNewGame)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewGameActionPerformed
-        GameScreen gameScreen = new GameScreen();
+        GameScreen gameScreen = new GameScreen(difficulty);
         gameScreen.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNewGameActionPerformed
+
+    private void btnEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEasyActionPerformed
+        difficulty = 0;
+    }//GEN-LAST:event_btnEasyActionPerformed
+
+    private void btnMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediumActionPerformed
+        difficulty = 1;
+    }//GEN-LAST:event_btnMediumActionPerformed
+
+    private void btnHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHardActionPerformed
+        difficulty = 2;
+    }//GEN-LAST:event_btnHardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,7 +173,12 @@ public class JavaSudoku extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton btnEasy;
+    private javax.swing.ButtonGroup btnGrpDiff;
+    private javax.swing.JRadioButton btnHard;
+    private javax.swing.JRadioButton btnMedium;
     private javax.swing.JButton btnNewGame;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblDifficulty;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

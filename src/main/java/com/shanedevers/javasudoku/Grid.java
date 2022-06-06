@@ -14,7 +14,7 @@ public class Grid {
     private int[][] contents;
     private int size;
     
-    public Grid() {
+    public Grid(int difficulty) {
         contents = new int[9][9];
         size = contents.length;
         Random rand = new Random();
@@ -37,6 +37,24 @@ public class Grid {
                     break;
                 }
             }
+        }
+        int toRemove = 40;
+        switch (difficulty) {
+            case 0:
+                toRemove = rand.nextInt(10) + 40;
+                break;
+            case 1:
+                toRemove = rand.nextInt(10) + 50;
+                break;
+            case 2:
+                toRemove = rand.nextInt(10) + 60;
+                break;
+        }
+        for (int i = 0; i < toRemove; i++) {
+            int removeIndex = rand.nextInt(81);
+            int j = removeIndex / 9;
+            int k = removeIndex % 9;
+            contents[j][k] = 0;
         }
     }
     
