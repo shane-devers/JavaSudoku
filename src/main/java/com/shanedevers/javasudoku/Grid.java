@@ -41,13 +41,13 @@ public class Grid {
         int toRemove = 40;
         switch (difficulty) {
             case 0:
-                toRemove = rand.nextInt(10) + 40;
+                toRemove = rand.nextInt(15) + 40;
                 break;
             case 1:
-                toRemove = rand.nextInt(10) + 50;
+                toRemove = rand.nextInt(15) + 55;
                 break;
             case 2:
-                toRemove = rand.nextInt(10) + 60;
+                toRemove = rand.nextInt(15) + 70;
                 break;
         }
         for (int i = 0; i < toRemove; i++) {

@@ -4,6 +4,8 @@
  */
 package com.shanedevers.javasudoku;
 
+import javax.swing.*;
+
 /**
  *
  * @author shane
@@ -11,6 +13,7 @@ package com.shanedevers.javasudoku;
 public class GameScreen extends javax.swing.JFrame {
 
     private Grid grid;
+    private CellChecker cellCheck;
     /**
      * Creates new form GameScreen
      */
@@ -24,6 +27,12 @@ public class GameScreen extends javax.swing.JFrame {
                     tblGrid.setValueAt(value, i, j);
                 }   
             }
+        }
+    }
+    
+    class CellChecker extends InputVerifier {
+        public boolean verify(JComponent component) {
+            return !grid.checkCollision(tblGrid.getEditingRow(), tblGrid.getEditingColumn());
         }
     }
 
@@ -70,6 +79,7 @@ public class GameScreen extends javax.swing.JFrame {
             }
         });
         tblGrid.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblGrid.setInputVerifier(cellCheck);
         tblGrid.setRowSelectionAllowed(false);
         tblGrid.setShowGrid(true);
         jScrollPane1.setViewportView(tblGrid);
