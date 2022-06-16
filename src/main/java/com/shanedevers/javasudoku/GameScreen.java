@@ -19,6 +19,8 @@ public class GameScreen extends javax.swing.JFrame {
      */
     public GameScreen(int difficulty) {
         initComponents();
+        cellCheck = new CellChecker();
+        tblGrid.setInputVerifier(cellCheck);
         grid = new Grid(difficulty);
         for (int i = 0; i < grid.getSize(); i++) {
             for (int j = 0; j < grid.getSize(); j++) {
@@ -31,7 +33,7 @@ public class GameScreen extends javax.swing.JFrame {
     }
     
     class CellChecker extends InputVerifier {
-        public boolean verify(JComponent component) {
+        public boolean verify(JComponent input) {
             return !grid.checkCollision(tblGrid.getEditingRow(), tblGrid.getEditingColumn());
         }
     }
@@ -79,7 +81,6 @@ public class GameScreen extends javax.swing.JFrame {
             }
         });
         tblGrid.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tblGrid.setInputVerifier(cellCheck);
         tblGrid.setRowSelectionAllowed(false);
         tblGrid.setShowGrid(true);
         jScrollPane1.setViewportView(tblGrid);
