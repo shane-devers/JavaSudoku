@@ -128,4 +128,8 @@ public class Grid {
         return size;
     }
     
+    public void setContents(int i, int j, int value) {
+        contents[i][j] = value;
+    }
+    
 }
